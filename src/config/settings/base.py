@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 SECRET_KEY=os.getenv("SECRET_KEY")
@@ -13,17 +13,11 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 INTERNAL_IPS = os.getenv("INTERNAL_IPS").split(",")
 CORS_ALLOW_ALL_ORIGINS = os.getenv("CORS_ALLOW_ALL_ORIGINS") == "True"
 
-INTERNAL_IPS = [
-    # ...
-    '127.0.0.1',  # Adjust as necessary for Docker
-    'localhost',
-    '172.17.0.1',  # Example Docker bridge IP
-]
-
 
 # Application definition
 INSTALLED_APPS = [
     "jazzmin" ,  # which is used to add the admin panel # pip install jazzmin
+    "debug_toolbar" ,  # which is used to debug the application # pip install django-debug-toolbar
     "modeltranslation" ,  # which is used to translate the models # pip install django-modeltranslation
 
     "django.contrib.admin",
@@ -35,7 +29,6 @@ INSTALLED_APPS = [
 
     "corsheaders" , # which is used to allow given host to access the resources # pip install django-cors-headers
     "rest_framework" , # which is used to create the restful api # pip install djangorestframework
-    "debug_toolbar" , # which is used to debug the application # pip install django-debug-toolbar
     "drf_yasg" , # which is used to create the api documentation # pip install drf-yasg
 
     'apps.amocrm.apps.AmocrmConfig',

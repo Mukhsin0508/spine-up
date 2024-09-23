@@ -23,4 +23,3 @@ else:
             "NAME": settings.BASE_DIR /"db.sqlite3" ,
         }
     }
-print (DATABASES)
