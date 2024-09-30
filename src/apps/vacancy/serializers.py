@@ -1,11 +1,15 @@
 from rest_framework import serializers
 from .models import PostVacancy, JobRequirement, Application
 
+
+
 class JobRequirementSerializer(serializers.ModelSerializer):
     """This serializer is used to represent individual job requirements."""
     class Meta:
         model = JobRequirement
         fields = ['requirement'] # Only the requirement field is exposed.
+
+
 
 class PostVacancySerializer(serializers.ModelSerializer):
     """Serializer for PostVacancy model, which also handles nested JobRequirements."""
@@ -24,6 +28,8 @@ class PostVacancySerializer(serializers.ModelSerializer):
         for requirements_data in requirements_data:
             JobRequirement.objects.create(vacancy=vacancy, **requirements_data)
         return vacancy
+
+
 
 class ApplicationSerializer(serializers.ModelSerializer):
     """Used to handle serialization of job applications."""

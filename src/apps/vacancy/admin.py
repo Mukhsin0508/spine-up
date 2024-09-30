@@ -17,7 +17,7 @@ class PostVacancyAdmin(admin.ModelAdmin):
     Customizes the admin panel for the PostVacancy model, allowing admins to manage job vacancies.
     """
     list_display = ('title', 'salary_from', 'salary_to', 'created_at', 'updated_at')
-    search_fields = ('title', 'description')
+    search_fields = ('title', 'created_at')
     inlines = [JobRequirementInline]  # Enable inline editing of job requirements when creating or editing a vacancy.
 
 

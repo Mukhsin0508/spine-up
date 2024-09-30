@@ -33,6 +33,7 @@ INSTALLED_APPS = [
 
     'apps.amocrm.apps.AmocrmConfig',
     'apps.chatbot.apps.ChatbotConfig',
+    'apps.products.apps.ProductsConfig',
     'apps.vacancy.apps.VacancyConfig',
     'apps.web.apps.WebConfig',
 ]

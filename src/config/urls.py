@@ -7,12 +7,16 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),  # Add this line for language switching
 
-    # ================== API URLS ====================
+
+
+    # ================== Django Project API URLS ====================
     path('api/v1/', include("apps.amocrm.urls")),
     path('api/v1/', include("apps.chatbot.urls")),
     path('api/v1/', include("apps.vacancy.urls")),
     path('api/v1/', include("apps.web.urls")),
-    # path('api/v1/', include("apps.products.urls")),
+    path('api/v1/', include("apps.products.urls")),
+
+
 
     # ==================== Swagger and Redoc ====================
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

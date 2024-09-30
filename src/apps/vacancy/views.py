@@ -11,6 +11,9 @@ class PostVacancyListView(generics.ListAPIView):
     Retrieves a list of all job vacancies.
     This view is accessible to all users for browsing job openings.
     """
+    permission_classes = ()
+    authentication_classes = ()
+
     queryset = PostVacancy.objects.all()
     serializer_class = PostVacancySerializer
 
@@ -20,6 +23,9 @@ class PostVacancyDetailView(generics.RetrieveAPIView):
     Retrieves the details of a specific job vacancy.
     This view allows users to view detailed information about a particular vacancy.
     """
+    permission_classes = ()
+    authentication_classes = ()
+
     queryset = PostVacancy.objects.all()
     serializer_class = PostVacancySerializer
 
@@ -30,6 +36,9 @@ class ApplicationCreateView(generics.CreateAPIView):
     This view handles the job application submission and sends an email notification
     when a new application is created.
     """
+    permission_classes = ()
+    authentication_classes = ()
+
     serializer_class = ApplicationSerializer
 
     def perform_create(self, serializer):
