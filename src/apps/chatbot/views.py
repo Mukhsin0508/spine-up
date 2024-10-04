@@ -8,10 +8,13 @@ import requests
 import json
 
 
-def get_rag_response(query):
+def get_rag_response(query, conversation_history):
     url = "https://api.mukhsin.space/rag-query"
     headers = {"Content-Type":"application/json"}
-    data = {"query":query}
+    data = {
+        "query":query,
+        "conversation_history":conversation_history
+        }
     response = requests.post(url, headers=headers, data=json.dumps(data))
     return response.json()
 
@@ -43,7 +46,19 @@ class MessageListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         message = serializer.save()
-        rag_response = get_rag_response(message.content)
+
+        # Get the last 15 messages from this conversation
+        conversation = message.conversation
+        recent_messages = Message.objects.filter(conversation=conversation).order_by('-timestamp')[:15]
+
+        conversation_history = []
+        for msg in reversed(recent_messages):
+            conversation_history.append({"role": "user", "content": msg.content})
+            if hasattr(msg, 'rag_response'):
+                conversation_history.append({"role": "assistant", "content": msg.rag_response.response_txt})
+
+        # Get RAG response with conversation history
+        rag_response = get_rag_response(message.content, conversation_history)
         RAGResponse.objects.create(message=message, response_text=rag_response['response'])
 
     def create(self, request, *args, **kwargs):
