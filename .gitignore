@@ -25,6 +25,7 @@ media_root/
 static_root/
 *.pyo
 
+
 # Environments
 .venv
 env/
@@ -111,6 +112,11 @@ s.idea/.gitignore
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
+
+Access_token txt files
+src/access_token.txt
+src/refresh_token.txt
+
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,

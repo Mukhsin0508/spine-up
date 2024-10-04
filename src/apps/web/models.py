@@ -22,6 +22,7 @@ class Certificate(models.Model):
 
 class CompanyCertificate(models.Model):
     title = models.CharField(max_length=200)
+    description = models.CharField(max_length=500, null=True, blank=True)
     image = models.ImageField(upload_to='company_certificates/')
 
     def __str__(self):
