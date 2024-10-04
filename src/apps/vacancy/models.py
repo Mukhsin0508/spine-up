@@ -1,6 +1,7 @@
+import magic
 from django.db import models
 from django.core.validators import FileExtensionValidator
-from config.validators import phone_validate
+from config.validators import phone_validate, validate_file_size, validate_file_type
 
 
 class PostVacancy(models.Model):
@@ -32,8 +33,9 @@ class Application(models.Model):
     experience = models.TextField()
     resume = models.FileField(
         upload_to='resumes/',
-        validators=[FileExtensionValidator(allowed_extensions=['pdf', 'doc', 'docx'])]
-        )
+        validators=[FileExtensionValidator(allowed_extensions=['pdf', 'doc', 'docx']),
+                    validate_file_type, validate_file_size]
+    )
     phone_number = models.CharField(max_length=13, validators=[phone_validate])
     created_at = models.DateTimeField(auto_now_add=True)
 
