@@ -37,3 +37,58 @@ def scan_file_for_viruses(file_path):
     result = subprocess.run(['clamscan', file_path], stdout=subprocess.PIPE)
     if 'Infected files: 0' not in result.stdout.decode('utf-8'):
         raise ValidationError('Virus detected in the uploaded file.')
+
+
+import magic
+from PIL import Image
+from io import BytesIO
+
+
+def validate_staff_image(file):
+    """Validator for checking staff image."""
+    file.seek(0)
+    file_extension = magic.from_buffer(file.read(1024), mime=True)
+
+    # Check if the file is an image
+    if not file_extension.startswith('image/'):
+        raise ValueError("File must be an image.")
+
+    # Reset file pointer and open image
+    file.seek(0)
+    img = Image.open(BytesIO(file.read()))
+
+    # Check dimensions
+    width, height = img.size
+    if width != 333 or height != 344:
+        raise ValueError(f"Staff image must be 333x344 pixels. Got {width}x{height}.")
+
+    # Check file format (assuming JPEG or PNG are acceptable)
+    if file_extension not in ['image/jpeg', 'image/png']:
+        raise ValueError("Staff image must be in JPEG or PNG format.")
+
+    return True
+
+
+def validate_product_image(file):
+    """Validator for checking product image."""
+    file.seek(0)
+    file_extension = magic.from_buffer(file.read(1024), mime=True)
+
+    # Check if the file is an image
+    if not file_extension.startswith('image/'):
+        raise ValueError("File must be an image.")
+
+    # Reset file pointer and open image
+    file.seek(0)
+    img = Image.open(BytesIO(file.read()))
+
+    # Check dimensions
+    width, height = img.size
+    if width != 393 or height != 280:
+        raise ValueError(f"Product image must be 393x280 pixels. Got {width}x{height}.")
+
+    # Check file format (assuming JPEG or PNG are acceptable)
+    if file_extension not in ['image/jpeg', 'image/png']:
+        raise ValueError("Product image must be in JPEG or PNG format.")
+
+    return True

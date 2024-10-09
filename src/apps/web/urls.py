@@ -3,6 +3,7 @@ from .views import StaffListView, CertificateListView, CompanyCertificateListVie
 
 urlpatterns = [
     path('staff/', StaffListView.as_view(), name='staff'),
-    path('certificate/', CertificateListView.as_view(), name='certificate'),
+    path('certificate/<int:pk>/', CertificateListView.as_view(), name='certificate'),
     path('company-certificate', CompanyCertificateListView.as_view(), name='company-certificate')
-    ]
+
+]

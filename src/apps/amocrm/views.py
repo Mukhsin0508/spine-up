@@ -30,6 +30,7 @@ class ClientDataAPIView(GenericAPIView):
 
     def post(self, request) -> Response:
         serializer = self.get_serializer(data=request.data)
+
         if serializer.is_valid():
             validated_data = serializer.validated_data
 
@@ -37,8 +38,11 @@ class ClientDataAPIView(GenericAPIView):
                          f"Номер_телефона:{validated_data['phone']} \n"
                          f"Услуга:{validated_data['service']} \n"
                          f" Платформа:{validated_data['platform']}")
-            lead = Lead.objects.create ( name = lead_data )
 
-            return Response("Success", status = status.HTTP_200_OK)
+            try:
+                lead = Lead.objects.create(name=lead_data)
+                return Response({"message":"Lead created successfully!"}, status=status.HTTP_200_OK)
+            except Exception as e:
+                return Response({"error":str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
-            return Response("Failed", status = status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

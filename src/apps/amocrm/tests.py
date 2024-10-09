@@ -66,31 +66,3 @@ class TestClientDataSerializer(TestCase):
         serializer = ClientDataSerializer(data=data)
         self.assertFalse(serializer.is_valid())
         self.assertIn("phone", serializer.errors)
-
-# The test cases above are for the ClientDataSerializer class.
-
-# The test_valid_data method tests the serializer with valid data,
-# and asserts that the serializer is valid and the validated data is equal to the input data.
-
-# The test_invalid_data method tests the serializer with invalid data,
-# and asserts that the serializer is not valid and the platform field is in the errors.
-
-# The test_data_formatting method tests the formatting of the data by the serializer,
-# and asserts that the data is equal to the input data.
-
-# The test_empty_data method tests the serializer with empty data,
-# and asserts that the serializer is not valid and all fields are in the errors.
-
-# The test_invalid_phone_number method tests the serializer with an invalid phone number,
-# and asserts that the serializer is not valid and the phone field is in the errors.
-
-# These test cases cover various scenarios for the ClientDataSerializer class,
-# ensuring that it behaves as expected in different situations.
-
-# You can run the tests using the following command:
-# python manage.py test src.amocrm.tests.TestClientDataSerializer
-# This will run the test cases defined in the TestClientDataSerializer python manage.py test src.amocrm.test class.
-
-# You can also run all tests in the amocrm app by running:
-# python manage.py test src.amocrm
-# This will run all test cases defined in the tests.py file of the amocrm app.

@@ -18,7 +18,7 @@ CORS_ALLOW_ALL_ORIGINS = os.getenv("CORS_ALLOW_ALL_ORIGINS") == "True"
 # Application definition
 INSTALLED_APPS = [
     "jazzmin" ,  # which is used to add the admin panel # pip install jazzmin
-    "debug_toolbar" ,  # which is used to debug the application # pip install django-debug-toolbar
+    # "debug_toolbar" ,  # which is used to debug the application # pip install django-debug-toolbar
     "modeltranslation" ,  # which is used to translate the models # pip install django-modeltranslation
 
     "django.contrib.admin",
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'debug_toolbar.middleware.DebugToolbarMiddleware', # added
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware', # added
 ]
 
 ROOT_URLCONF = "config.urls"

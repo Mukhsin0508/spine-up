@@ -1,9 +1,12 @@
 from django.db import models
 from multiselectfield import MultiSelectField
 
+from config.validators import validate_product_image
+
 
 class PostProduct(models.Model):
     title = models.TextField(max_length=150)
+    image = models.ImageField(upload_to='post-images', validators=[validate_product_image], blank=True, null=True)
     description = models.TextField(max_length=300)
     number_of_sessions = models.CharField(max_length=3)
     duration = models.CharField(max_length=3)

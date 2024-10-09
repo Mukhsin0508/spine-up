@@ -1,8 +1,11 @@
 from django.db import models
 
+from config.validators import validate_staff_image
+
 
 class Staff(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='staff_images', null=True, blank=True, validators=[validate_staff_image])
     position = models.CharField(max_length=100)
     years_of_experience = models.CharField()
 

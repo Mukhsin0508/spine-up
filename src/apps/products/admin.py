@@ -16,7 +16,7 @@ class PostProductAdmin(admin.ModelAdmin):
     """
     Admin panel configuration for the PostProduct model, including the ClassDayInline.
     """
-    list_display = ('title', 'duration', 'number_of_sessions', 'description')
+    list_display = ('title', 'image', 'duration', 'number_of_sessions', 'description')
     search_fields = ('title', 'created_at')
     inlines = [ClassDayInline] # Enable inline editing of Product ClassDays when creating or editing a Product.
 

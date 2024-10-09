@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 from .yasg import schema_view
-from debug_toolbar.toolbar import debug_toolbar_urls
+# from debug_toolbar.toolbar import debug_toolbar_urls
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),  # Add this line for language switching
@@ -29,5 +29,5 @@ urlpatterns += i18n_patterns(
     # Add other URL patterns that should be translated here
 )
 
-# Debug toolbar URLs
-urlpatterns += debug_toolbar_urls()
+# # Debug toolbar URLs
+# urlpatterns += debug_toolbar_urls()
