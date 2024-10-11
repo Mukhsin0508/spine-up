@@ -69,10 +69,10 @@ class MessageListCreateView(generics.ListCreateAPIView):
 
         # ======== Call the RAG model endpoint with query content and conversation_history ========
         rag_response = get_rag_response(message.content, conversation_history)
-        print("Sending request to RAG model with data:", conversation_history)
+        # print("Sending request to RAG model with data:", conversation_history)
 
         # ========= Print the full seconds waited for Rag Model's response (can be deleted) ========
-        print("Total Seconds waited for Response: ", rag_response.elapsed.total_seconds())
+        # print("Total Seconds waited for Response: ", rag_response.elapsed.total_seconds())
 
         # ========= Parse the response into json format =========
         rag_response = rag_response.json()
