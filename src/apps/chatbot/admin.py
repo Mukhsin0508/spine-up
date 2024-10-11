@@ -46,10 +46,9 @@ class ConversationAdmin(admin.ModelAdmin):
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'conversation', 'sender', 'content', 'timestamp')
-    list_filter = ('timestamp', 'sender')
-    search_fields = ('content', 'sender__username', 'sender__email')
-    readonly_fields = ('conversation', 'sender', 'content', 'timestamp')
+    list_display = ('id', 'conversation', 'content', 'timestamp')
+    list_filter = ('timestamp', 'conversation__sender_id')
+    readonly_fields = ('conversation', 'content', 'timestamp')
     inlines = [RAGResponseInline]
 
 @admin.register(CustomSender)

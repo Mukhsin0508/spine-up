@@ -29,13 +29,6 @@ class CustomSender(AbstractUser):
     def __str__(self):
         return self.username
 
-@receiver(pre_save, sender=CustomSender)
-def generate_sample_unique_user(sender, instance, **kwargs):
-    if not instance.phone_number and not instance.is_sample_sender:
-        instance.username = f"sample_user_{uuid.uuid4().hex[:8]}"
-        instance.email = f"{instance.username}@example.com"
-        instance.is_sample_sender = True
-
 
 class Conversation(models.Model):
     """Model to represent a conversation or chat session."""
@@ -49,13 +42,11 @@ class Conversation(models.Model):
 class Message(models.Model):
     """Model to store messages within a conversation."""
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name = 'messages')
-    sender = models.ForeignKey(CustomSender, on_delete = models.CASCADE, related_name = 'sent_messages')
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Message from {self.sender.username} at {self.timestamp}"
-
+        return f"Message: {self.content} in conversation {self.conversation}"
 
 class RAGResponse(models.Model):
     """Model to store RAG model responses."""
