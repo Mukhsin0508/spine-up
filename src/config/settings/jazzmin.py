@@ -11,7 +11,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Revite",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "src/statsic/images/site_logo.svg",
+    "site_logo": "src/static/images/site_logo.svg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": "src/static/images/login_logo.svg",
@@ -26,7 +26,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": "src/static/images/favicon.ico",
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the Revite Administration",
+    "welcome_sign": "Welcome to Revite Administration",
 
     # Copyright on the footer
     "copyright": "Revite Ltd",
