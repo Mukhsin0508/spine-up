@@ -12,8 +12,8 @@ if POSTGRES:
             "PASSWORD": os.getenv("DB_PASSWORD"),
             "HOST": os.getenv("DB_HOST"),
             "PORT": os.getenv("DB_PORT"),
-            "TIME_ZONE": os.getenv("TIME_ZONE"),
-            "USE_TZ": os.getenv("USE_TZ"),
+            # "TIME_ZONE": os.getenv("TIME_ZONE"),
+            # "USE_TZ": os.getenv("USE_TZ"),
         }
     }
 else:
