@@ -38,7 +38,6 @@ class ClientDataAPIView(GenericAPIView):
                          f"Номер_телефона:{validated_data['phone']} \n"
                          f"Услуга:{validated_data['service']} \n"
                          f" Платформа:{validated_data['platform']}")
-
             try:
                 lead = Lead.objects.create(name=lead_data)
                 return Response({"message":"Lead created successfully!"}, status=status.HTTP_200_OK)

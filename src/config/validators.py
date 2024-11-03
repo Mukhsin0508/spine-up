@@ -54,17 +54,17 @@ def validate_staff_image(file):
         raise ValueError("File must be an image.")
 
     # Reset file pointer and open image
-    file.seek(0)
-    img = Image.open(BytesIO(file.read()))
+    # file.seek(0)
+    # img = Image.open(BytesIO(file.read()))
 
     # Check dimensions
-    width, height = img.size
-    if width != 333 or height != 344:
-        raise ValueError(f"Staff image must be 333x344 pixels. Got {width}x{height}.")
+    # width, height = img.size
+    # if width != 333 or height != 344:
+    #     raise ValueError(f"Staff image must be 333x344 pixels. Got {width}x{height}.")
 
     # Check file format (assuming JPEG or PNG are acceptable)
     if file_extension not in ['image/jpeg', 'image/png']:
-        raise ValueError("Staff image must be in JPEG or PNG format.")
+        raise ValueError("Изображение персонала должно быть в формате JPEG или PNG.")
 
     return True
 
@@ -79,16 +79,16 @@ def validate_product_image(file):
         raise ValueError("File must be an image.")
 
     # Reset file pointer and open image
-    file.seek(0)
-    img = Image.open(BytesIO(file.read()))
+    # file.seek(0)
+    # img = Image.open(BytesIO(file.read()))
 
     # Check dimensions
-    width, height = img.size
-    if width != 393 or height != 280:
-        raise ValueError(f"Product image must be 393x280 pixels. Got {width}x{height}.")
+    # width, height = img.size
+    # if width != 393 or height != 280:
+    #     raise ValueError(f"Product image must be 393x280 pixels. Got {width}x{height}.")
 
     # Check file format (assuming JPEG or PNG are acceptable)
     if file_extension not in ['image/jpeg', 'image/png']:
-        raise ValueError("Product image must be in JPEG or PNG format.")
+        raise ValueError("Изображение товара должно быть в формате JPEG или PNG.")
 
     return True
