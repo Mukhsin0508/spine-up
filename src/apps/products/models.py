@@ -34,5 +34,5 @@ class ClassDay(models.Model):
     days = MultiSelectField(max_length=50, choices=WEEK_CHOICES, max_choices=3)
 
     def __str__(self):
-        return f"Class days for {self.product.title}: {','.join(self.days)}"
+        return f"Классные дни для {self.product.title}: {','.join(self.days)}"
 
