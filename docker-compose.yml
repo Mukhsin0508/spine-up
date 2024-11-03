@@ -15,10 +15,10 @@ services:
     volumes:
       - "./src:/app"
     depends_on:
-      - postgres_db
+      - db
       - clamav
 
-  postgres_db:
+  db:
     image: postgres:latest
     env_file:
       - .env
