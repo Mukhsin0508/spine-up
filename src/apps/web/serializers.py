@@ -13,7 +13,7 @@ class StaffSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Staff
-        fields = ['id', 'name', 'position', 'years_of_experience', 'certificates']
+        fields = ['id', 'name', 'image', 'position', 'years_of_experience', 'certificates']
 
 
 class CompanyCertificateSerializer(serializers.ModelSerializer):

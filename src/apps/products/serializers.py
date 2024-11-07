@@ -17,7 +17,7 @@ class PostProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PostProduct
-        fields = ['id', 'title', 'description', 'duration', 'number_of_sessions', 'class_days']
+        fields = ['id', 'title', 'image', 'description', 'duration', 'number_of_sessions', 'class_days']
 
         # ======== Custom create method to handle nested ClassDays during Product creation. ========
         def create(self, validated_data):
