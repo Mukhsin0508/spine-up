@@ -23,6 +23,16 @@ jobs:
           ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-208-224-53.compute-1.amazonaws.com << 'EOF'
             cd /home/ubuntu/spine-up
             git pull origin main
+
+            # Disk cleanup commands
+            docker system prune -af                # Remove stopped containers, dangling images, and unused networks
+            docker volume prune -f                 # Remove unused volumes
+            sudo rm -rf /var/log/*.gz /var/log/*.[0-9]   # Clear old compressed log files
+            sudo truncate -s 0 /var/log/*.log            # Truncate log files to free space
+            sudo rm -rf /tmp/*                           # Clear temporary files
+            sudo apt-get clean                           # Clean up APT cache
+
+            # Restart Docker services
             docker-compose down
             docker-compose up -d --build
             exit
