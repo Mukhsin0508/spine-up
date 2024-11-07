@@ -31,7 +31,7 @@ class ClassDay(models.Model):
     )
 
     product = models.ForeignKey(PostProduct, on_delete=models.CASCADE, related_name='class_days')
-    days = MultiSelectField(max_length=50, choices=WEEK_CHOICES, max_choices=3)
+    days = MultiSelectField(max_length=50, choices=WEEK_CHOICES)
 
     def __str__(self):
         return f"Классные дни для {self.product.title}: {','.join(self.days)}"
