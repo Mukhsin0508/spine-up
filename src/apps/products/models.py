@@ -8,7 +8,7 @@ class PostProduct(models.Model):
     title = models.TextField(max_length=150)
     image = models.ImageField(upload_to='post-images', validators=[validate_product_image], blank=True, null=True)
     description = models.TextField(max_length=300)
-    big_description = models.TextField(max_length=450, blank=True, null=True)
+    big_description = models.TextField(max_length=600, blank=True, null=True)
     number_of_sessions = models.CharField(max_length=3)
     duration = models.CharField(max_length=3)
 
