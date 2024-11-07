@@ -8,6 +8,7 @@ class PostProduct(models.Model):
     title = models.TextField(max_length=150)
     image = models.ImageField(upload_to='post-images', validators=[validate_product_image], blank=True, null=True)
     description = models.TextField(max_length=300)
+    big_description = models.TextField(max_length=450, blank=True, null=True)
     number_of_sessions = models.CharField(max_length=3)
     duration = models.CharField(max_length=3)
 
@@ -18,21 +19,28 @@ class PostProduct(models.Model):
         return self.title
 
 
+class TwoPictures(models.Model):
+    product = models.ForeignKey(PostProduct, on_delete=models.CASCADE, related_name='two_pictures')
+    image = models.ImageField(upload_to='post-images/two-pictures', validators=[validate_product_image])
+
+    def __str__(self):
+        return f"Image for {self.product.title} (Two Pictures)"
+
+
+class TenPictures(models.Model):
+    product = models.ForeignKey(PostProduct, on_delete=models.CASCADE, related_name='ten_pictures')
+    image = models.ImageField(upload_to='post-images/ten-pictures', validators=[validate_product_image])
+
+    def __str__(self):
+        return f"Image for {self.product.title} (Ten Pictures)"
+
 
 class ClassDay(models.Model):
-    WEEK_CHOICES = (
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-        ('Sunday', 'Sunday'),
-    )
+    WEEK_CHOICES = (('Monday', 'Monday'), ('Tuesday', 'Tuesday'), ('Wednesday', 'Wednesday'), ('Thursday', 'Thursday'),
+    ('Friday', 'Friday'), ('Saturday', 'Saturday'), ('Sunday', 'Sunday'),)
 
     product = models.ForeignKey(PostProduct, on_delete=models.CASCADE, related_name='class_days')
     days = MultiSelectField(max_length=50, choices=WEEK_CHOICES)
 
     def __str__(self):
-        return f"Классные дни для {self.product.title}: {','.join(self.days)}"
-
+        return f"Class days for {self.product.title}: {', '.join(self.days)}"
