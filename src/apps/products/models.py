@@ -11,7 +11,10 @@ class PostProduct(models.Model):
     big_title = models.TextField(max_length=200)
     big_description = models.TextField(max_length=600, blank=True, null=True)
     number_of_sessions = models.CharField(max_length=3)
-    duration = models.CharField(max_length=3)
+    duration = models.CharField(
+        max_length=100,
+        help_text="A string that represents the duration of the session",
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
