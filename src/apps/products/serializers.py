@@ -28,7 +28,7 @@ class PostProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostProduct
         fields = [
-            'id', 'title', 'image', 'description', 'big_description',
+            'id', 'title', 'image', 'description', 'big_title', 'big_description',
             'duration', 'number_of_sessions', 'class_days', 'two_pictures', 'ten_pictures'
         ]
 
@@ -54,6 +54,7 @@ class PostProductSerializer(serializers.ModelSerializer):
         instance.title = validated_data.get('title', instance.title)
         instance.image = validated_data.get('image', instance.image)
         instance.description = validated_data.get('description', instance.description)
+        instance.big_title = validated_data.get('big_title', instance.big_title)
         instance.big_description = validated_data.get('big_description', instance.big_description)
         instance.duration = validated_data.get('duration', instance.duration)
         instance.number_of_sessions = validated_data.get('number_of_sessions', instance.number_of_sessions)
