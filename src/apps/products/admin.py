@@ -23,6 +23,6 @@ class TenPicturesInline(admin.TabularInline):
 @admin.register(PostProduct)
 class PostProductAdmin(admin.ModelAdmin):
     """Admin panel configuration for the PostProduct model."""
-    list_display = ('title', 'image', 'duration', 'number_of_sessions', 'description')
+    list_display = ('title', 'image', 'big_title', 'duration', 'number_of_sessions', 'description')
     search_fields = ('title', 'created_at')
     inlines = [ClassDayInline, TwoPicturesInline, TenPicturesInline]  # Enable inline editing for related models
