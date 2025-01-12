@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import PostProduct, ClassDay, TwoPictures, TenPictures
+from .models import PostProduct, ClassDay, SessionStep, TwoPictures, TenPictures
 
 
 class ClassDaySerializer(serializers.ModelSerializer):
@@ -19,23 +19,30 @@ class TenPicturesSerializer(serializers.ModelSerializer):
         model = TenPictures
         fields = ['image']
 
+class SessionStepSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SessionStep
+        fields = ['step_number', 'title', 'description']
+
 
 class PostProductSerializer(serializers.ModelSerializer):
     class_days = ClassDaySerializer(many=True, required=False)
     two_pictures = TwoPicturesSerializer(many=True, required=False)
     ten_pictures = TenPicturesSerializer(many=True, required=False)
+    session_steps = SessionStepSerializer(many=True, required=False)
 
     class Meta:
         model = PostProduct
         fields = [
             'id', 'title', 'image', 'description', 'big_title', 'big_description',
-            'duration', 'number_of_sessions', 'class_days', 'two_pictures', 'ten_pictures'
+            'duration', 'number_of_sessions', 'class_days', 'two_pictures', 'ten_pictures', 'session_steps'
         ]
 
     def create(self, validated_data):
         class_days_data = validated_data.pop('class_days', [])
         two_pictures_data = validated_data.pop('two_pictures', [])
         ten_pictures_data = validated_data.pop('ten_pictures', [])
+        session_steps_data = validated_data.pop('session_steps', [])
 
         product = PostProduct.objects.create(**validated_data)
 
@@ -47,6 +54,9 @@ class PostProductSerializer(serializers.ModelSerializer):
 
         for picture_data in ten_pictures_data:
             TenPictures.objects.create(product=product, **picture_data)
+
+        for step_data in session_steps_data:
+            SessionStep.objects.create(product=product, **step_data)
 
         return product
 
@@ -74,5 +84,10 @@ class PostProductSerializer(serializers.ModelSerializer):
         instance.ten_pictures.all().delete()
         for picture_data in ten_pictures_data:
             TenPictures.objects.create(product=instance, **picture_data)
+
+        session_steps_data = validated_data.pop('session_steps', [])
+        instance.session_steps.all().delete()
+        for step_data in session_steps_data:
+            SessionStep.objects.create(product=instance, **step_data)
 
         return instance
