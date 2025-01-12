@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy Application
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-208-224-53.compute-1.amazonaws.com << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@ec2-23-22-165-33.compute-1.amazonaws.com << 'EOF'
             cd /home/ubuntu/spine-up
             git pull origin main
 
