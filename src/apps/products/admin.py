@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import PostProduct, ClassDay, TwoPictures, TenPictures
+from .models import PostProduct, ClassDay, SessionStep, TwoPictures, TenPictures
 
 
 class ClassDayInline(admin.TabularInline):
     """Inline admin for ClassDay model to allow admins to add/edit Product ClassDays."""
     model = ClassDay
     extra = 1
+
+class SessionStepAdmin(admin.TabularInline):
+    model = SessionStep
+    extra = 6
 
 
 class TwoPicturesInline(admin.TabularInline):
@@ -25,4 +29,4 @@ class PostProductAdmin(admin.ModelAdmin):
     """Admin panel configuration for the PostProduct model."""
     list_display = ('title', 'image', 'big_title', 'duration', 'number_of_sessions', 'description')
     search_fields = ('title', 'created_at')
-    inlines = [ClassDayInline, TwoPicturesInline, TenPicturesInline]  # Enable inline editing for related models
+    inlines = [ClassDayInline, TwoPicturesInline, TenPicturesInline, SessionStepAdmin]  # Enable inline editing for related models

@@ -55,3 +55,28 @@ class ClassDay(models.Model):
 
     def __str__(self):
         return f"Class days for {self.product.title}: {', '.join(self.days)}"
+
+
+class SessionStep(models.Model):
+    """
+    Stores a single step in the "How the sessions go" part of the site.
+    Each step is tied to a PostProduct via a ForeignKey (many steps → one product).
+    """
+    product = models.ForeignKey(PostProduct, on_delete=models.CASCADE, related_name='session_steps')
+    step_number = models.CharField(max_length=3, help_text="The display order of this step, e.g. 1, 2, 3…")
+    title = models.CharField(
+        max_length=200,
+        help_text="Short title of the step (e.g., 'Общение с родителями')"
+    )
+    description = models.TextField(
+        max_length=250,
+        help_text="Detailed explanation of the step.",
+    )
+
+    class Meta:
+        ordering = ['step_number']
+        verbose_name = "Session Step"
+        verbose_name_plural = "Session Steps"
+
+    def __str__(self):
+        return f"{self.title}"
