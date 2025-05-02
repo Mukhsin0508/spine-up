@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     pip install setuptools && \
     pip install -r requirements.txt --no-input && \
     # ==== Clean up to reduce image size ====
-    rm -rf /var/lib/apt/lists/* /root/.cache
+    rm -rf /var/lib/apt/lists/* /root/.cache ~/.cache/pip
 
 COPY ./src /app
 
