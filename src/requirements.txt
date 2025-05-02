@@ -10,3 +10,8 @@ pillow==10.4.0
 psycopg2-binary==2.9.9
 python-dotenv==1.0.1
 python-magic==0.4.27 # pip install python-magic
+redis==5.2.1 # added by Mukhsin on 2025-04-13
+celery==5.5.1 # added by Mukhsin on 2025-04-13
+omni-authify==1.1.8 # added by Mukhsin on 2025-04-13
+pymongo==4.12.0 # added by Mukhsin on 2025-04-13
+certifi==2024.8.30 # added by Mukhsin on 2025-04-13
