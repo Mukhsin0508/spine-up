@@ -23,3 +23,10 @@ else:
             "NAME": settings.BASE_DIR /"db.sqlite3" ,
         }
     }
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': settings.REDIS_PORT_URL,
+    }
+}
